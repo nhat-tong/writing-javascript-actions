@@ -23,10 +23,6 @@ jobs:
       - name: my joke
         uses: ./.github/actions/joke-action
         id: jokes
-      - name: install npm issue-marker packages
-        run: |
-         cd ./.github/actions/issue-maker
-         npm install
       - name: create issue
         uses: ./.github/actions/issue-maker
         with:
