@@ -12,13 +12,15 @@ jobs:
       - uses: actions/checkout@v2
         with:
           ref: action-two
-      - name: install npm packages
+      - name: install npm hello packages
         run: |
-         cd ~/.github/actions/hello-world
-         npm install
-         cd ~/.github/actions/joke-action
+         cd ./.github/actions/hello-world
          npm install
       - name: hello-action
-        uses: ~/.github/actions/hello-world
+        uses: ./.github/actions/hello-world
+      - name: install npm joke packages
+        run: |
+         cd ./.github/actions/joke-action
+         npm install
       - name: my joke
-        uses: ~/.github/actions/joke-action
+        uses: ./.github/actions/joke-action
