@@ -9,7 +9,9 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - name: install npm packages
-        run: npm install
+        run: |
+         cd ./.github/actions/hello-world
+         npm install
       - name: hello-action
         uses: ./.github/actions/hello-world
         with:
