@@ -1,18 +1,26 @@
 name: JS Actions
 
-on: [push]
+on:
+  pull_request:
+    types: [labeled]
 
 jobs:
   action:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v1
-      - name: install npm packages
+      - uses: actions/checkout@v2
+        with:
+          ref: action-two
+      - name: install npm hello packages
         run: |
          cd ./.github/actions/hello-world
          npm install
       - name: hello-action
         uses: ./.github/actions/hello-world
-        with:
-          third-greeting: "test3"
+      - name: install npm joke packages
+        run: |
+         cd ./.github/actions/joke-action
+         npm install
+      - name: my joke
+        uses: ./.github/actions/joke-action
