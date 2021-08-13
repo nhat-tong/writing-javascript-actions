@@ -7,12 +7,22 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v1
-      - name: install npm packages
+      - uses: actions/checkout@v2
+      - name: install npm hello packages
         run: |
          cd ./.github/actions/hello-world
          npm install
       - name: hello-action
         uses: ./.github/actions/hello-world
+      - name: install npm joke packages
+        run: |
+         cd ./.github/actions/joke-action
+         npm install
+      - name: my joke
+        uses: ./.github/actions/joke-action
+        id: jokes
+      - name: create issue
+        uses: ./.github/actions/issue-marker
         with:
-          third-greeting: "test3"
+          repo-token: ${{github.token}}
+          joke: ${{steps.jokes.outputs.joke-output}}
