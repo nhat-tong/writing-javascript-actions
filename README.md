@@ -1,38 +1,36 @@
-# Welcome to your course 🎉
+### Workflow
 
-### Getting started
+![workflow](https://camo.githubusercontent.com/fd0a925f56ff417c793c7b84e3cd3998cfff191e6cc2a897f184c42c1ae9c6af/68747470733a2f2f692e696d6775722e636f6d2f437778476f62682e706e67)
 
-In this repository we will be diving into the world of writing GitHub Actions! I will guide you through the process of writing a custom JavaScript based GitHub Actions.
+## Action metadata
+Filename: action.yml
+This file contains 3 required fields:
 
-You may be asking yourself, "is JavaScript the only way to create custom GitHub Actions?"
+* name
+* description
+* runs
+  * using
+  * main
 
-Currently, there are **two** supported ways to create your own GitHub Actions:
+## Input
 
-- [Docker container actions](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/about-actions#docker-container-actions)
-- [JavaScript actions](https://help.github.com/en/actions/automating-your-workflow-with-github-actions/about-actions#javascript-actions)
+Input parameter for an action:
 
-As you can see we aren't necessarily limited to JavaScript even though it is the focal point for this course.
+* description: required
+* required: (true or false)
+* default
+* core.getInput("[name]")
 
----
+## Output
 
-### Creating vs consuming actions
+Output parameter of an action:
 
-Although we are going to focus on creating and consuming a custom action, in this course we will also be consuming some actions that have been made public to us. Because your workflows will most likely do the same, I found it important to show you where to look for actions that already exist.
+* core.setOutput("[name]")
+* reference to output parameter of previous action in a workflow: @steps.[step_id].outputs.[name]
 
-After all, for each time we need to reinvent the wheel for our specific use-case there are a handful of times when we are better off using a wheel that's already made!
+## get rid of node_modules
+* npm install command
+* ncc build index.js
 
-- The [GitHub Actions Marketplace](https://github.com/marketplace?type=actions) is the primary place to find open-source actions that the community has written and released. Your action, should you choose to release it, could also reside here one day, ready to be consumed by the world!
-- The [GitHub Actions Repository](https://github.com/actions) is where you can find actions that are written by GitHub. We will leverage an action named `[checkout](https://github.com/actions/checkout)` from this repository as we go through this course. I'll explain more about what it does when we use it!
-- Your repositories may also contain **private actions** and they will most likely be located in the `.github/actions` directory in the root of your repository. **This is the convention we will be using as we learn how to create our own action.**
-
----
-
-### Using actions and Learning Lab
-
-In other courses, you may have noticed that some behaviors take me longer to respond to than others. In this course, many of the behaviors we'll see demonstrated will be related to our GitHub Actions workflow. Those workflows sometimes take longer to complete, up to several minutes. Don't be concerned if I take a few minutes to respond, or if I respond too quickly. Sometimes, I'll let you know what the workflow will say before it finishes! Please wait for the workflows to finish before moving on to your next step.
-
-If you aren't already familiar, it may be a good idea to go through the [Introduction to GitHub Learning Lab](https://lab.github.com/githubtraining/introduction-to-github).
-
----
-
-**Please navigate to the open issue in this repository to get started!**
+## error handling
+* core.setFailed(err.message);
