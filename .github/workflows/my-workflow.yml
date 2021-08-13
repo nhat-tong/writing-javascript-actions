@@ -14,11 +14,11 @@ jobs:
           ref: action-two
       - name: install npm packages
         run: |
-         cd ./.github/actions/hello-world
+         cd ~/.github/actions/hello-world
          npm install
-         cd ./.github/actions/joke-action
+         cd ~/.github/actions/joke-action
          npm install
       - name: hello-action
-        uses: ./.github/actions/hello-world
+        uses: ~/.github/actions/hello-world
       - name: my joke
-        uses: ./.github/actions/joke-action
+        uses: ~/.github/actions/joke-action
